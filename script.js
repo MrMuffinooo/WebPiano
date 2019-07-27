@@ -6,6 +6,9 @@ var butts = document.querySelectorAll('.butt'); // buttons with letters
 var result = document.getElementById("result"); // where score is displayed
 var progress = document.getElementById("progress"); // timer
 
+var sharp = document.querySelector('#sharp');
+var flat = document.querySelector('#flat');
+
 var isBass = true; // shows if notes are from bass clef
 var cycle = 0;  // shows how many notes are left to play on current clef, randomised on 0 and toggles {isBass}
 
@@ -48,6 +51,9 @@ function RandomNote() {
     number = temp;
     top = 20 + 14 * number;
     document.getElementById("note").style.top = top;
+    sharp.style.top = top - 5;
+    flat.style.top = top - 10;
+    FlatSharp();
 
 
     // note's rotation
@@ -146,7 +152,22 @@ function RandomNote() {
     }
 }
 
-
+// # and b
+function FlatSharp(){
+    var isFlatSharp = Math.floor(Math.random() * 10);
+    if(isFlatSharp == 0){
+        sharp.style.opacity = 1;
+        flat.style.opacity = 0;
+    }
+    else if(isFlatSharp == 1){
+        sharp.style.opacity = 0;
+        flat.style.opacity = 1;
+    }
+    else{
+        sharp.style.opacity = 0;
+        flat.style.opacity = 0;
+    }
+}
 
 
 // determines wether correct key pressed
