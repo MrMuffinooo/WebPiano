@@ -103,7 +103,7 @@ nav{
 #bass{
     position: relative;
     top: 132px;
-    left: 1%;
+    left: calc(1% - 75px);
     opacity: 0;
     transition: all .3s ease-in-out;
 }
@@ -115,6 +115,20 @@ nav{
     transform-origin: 37px 101px;
     transition: .4s ease-in-out;
     transform: rotate(180deg);
+}
+
+.sharpflat{
+    position: relative;
+    left: calc(30% - 185px);
+    top: 20px;
+    transition: .4s ease-in-out;
+}
+
+#flat{
+    left: calc(30% - 215px);
+}
+#sharp{
+
 }
 
 .linia{
