@@ -137,9 +137,6 @@ nav{
 #flat{
     left: calc(30% - 215px);
 }
-#sharp{
-
-}
 
 .linia{
     border-top: 3px solid black;
@@ -258,6 +255,7 @@ nav{
 #keyboard-container{
     background-color: rgba(0,0,0,.4);
     height: calc(100vh - 500px);
+    overflow: hidden;
 }
 
 #white-container, #black-container{
@@ -270,6 +268,7 @@ nav{
     background-color: white;
     margin-left: 2px;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 .spacer{
@@ -281,6 +280,8 @@ nav{
     width: 24px;
     background-color: black;
     border-radius: 3px;
+    cursor: pointer;
+    pointer-events: auto;
 }
 
 .black:first-of-type{
@@ -293,5 +294,10 @@ nav{
 
 #black-container{
     position: relative;
-    top: -225px;
+    top: -230px;
+    pointer-events: none;
+}
+#white-container{
+    position: relative;
+    top: -5px;
 }
