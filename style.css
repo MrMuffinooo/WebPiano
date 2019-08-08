@@ -301,3 +301,19 @@ nav{
     position: relative;
     top: -5px;
 }
+
+.pressed{
+    animation-name: keyboard-press;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+}
+
+@keyframes keyboard-press{
+    0% {}
+
+    10%{margin-top: -5px;  box-shadow: inset 0px 20px 33px 0px rgba(63, 63, 63, 0.2);}
+
+    60%{}
+
+    100% {margin-top: 0;  box-shadow: none;}
+} 

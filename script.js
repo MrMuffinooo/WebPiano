@@ -275,7 +275,10 @@ butts.forEach(b => b.addEventListener('click', function (e) {
     butt.classList.add("playing");
 }));
 
+// keyboard presses
 whites.forEach(w => w.addEventListener('click', function (e) {
+
+    this.classList.add("pressed");
 
     if (this.classList.contains("piano-answer")) {
         correctKey();
@@ -285,8 +288,13 @@ whites.forEach(w => w.addEventListener('click', function (e) {
         wrongKey();
     }
 }));
+whites.forEach(w => w.addEventListener('animationend', function (e) {
+    this.classList.remove("pressed");
+}));
 
 blacks.forEach(b => b.addEventListener('click', function (e) {
+
+    this.classList.add("pressed");
 
     if (this.classList.contains("piano-answer")) {
         correctKey();
@@ -295,6 +303,9 @@ blacks.forEach(b => b.addEventListener('click', function (e) {
     else {
         wrongKey();
     }
+}));
+blacks.forEach(b => b.addEventListener('animationend', function (e) {
+    this.classList.remove("pressed");
 }));
 
 
