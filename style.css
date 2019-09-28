@@ -271,6 +271,10 @@ nav{
     cursor: pointer;
 }
 
+.white:hover{
+    background-color: #ccc;
+}
+
 .spacer{
     width: 24px;
 }
@@ -282,6 +286,10 @@ nav{
     border-radius: 3px;
     cursor: pointer;
     pointer-events: auto;
+}
+
+.black:hover{
+    background-color: #444;
 }
 
 .black:first-of-type{

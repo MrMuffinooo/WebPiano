@@ -227,7 +227,7 @@ function RandomNote() {
 
 // # and b
 function FlatSharp() {
-    isFlatSharp = Math.floor(Math.random() * 2);
+    isFlatSharp = Math.floor(Math.random() * 8);
     if (isFlatSharp == 0) {
         sharp.style.opacity = 1;
         flat.style.opacity = 0;
@@ -278,13 +278,14 @@ butts.forEach(b => b.addEventListener('click', function (e) {
 // keyboard presses
 whites.forEach(w => w.addEventListener('click', function (e) {
 
-    this.classList.add("pressed");
+    
 
     if (this.classList.contains("piano-answer")) {
         correctKey();
         RandomNote();
     }
     else {
+        this.classList.add("pressed");
         wrongKey();
     }
 }));
@@ -345,6 +346,7 @@ function correctKey() {
     var audio = document.getElementsByClassName("correct")[0];
     audio.play();
     audio.classList.remove("correct");
+    document.getElementsByClassName("piano-answer")[0].classList.add("pressed");
     document.getElementsByClassName("piano-answer")[0].classList.remove("piano-answer");
 
     if (!ishelp) {
