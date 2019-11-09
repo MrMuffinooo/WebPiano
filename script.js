@@ -2,6 +2,7 @@ var number = -1;  // randomised to get a pitch
 var note = 0;  // key-code and data-key representation
 var score = 0;
 var isFlatSharp = -1;
+var audio_modifier = 0;
 
 var butts = document.querySelectorAll('.butt'); // buttons with letters
 var result = document.getElementById("result"); // where score is displayed
@@ -51,17 +52,19 @@ function RandomNote() {
 
     do {
         temp = Math.floor(Math.random() * 15);
-    } while (temp == number);
+    } while (temp == number + 14);
     number = temp;
     top = -114 + 14.15 * number;
     document.getElementById("note").style.top = top;
     sharp.style.top = top + 75;
     flat.style.top = top + 68;
+    number = 14 - number
+
     FlatSharp();
 
 
     // note's rotation
-    if (number < 8) {
+    if (number >= 8) {
         document.getElementById("note").style.transform = "rotate(180deg)";
     }
     else {
@@ -69,111 +72,72 @@ function RandomNote() {
     }
 
     // select correct note
-    if (isBass) {
-        document.getElementsByTagName("audio")[number + 12].classList.add("correct");
-        switch (number) {
 
-            case 0:
-            case 7:
-            case 14:
-                note = 68;
-                break;
-            case 1:
-            case 8:
-                note = 67;
-                break;
-            case 2:
-            case 9:
-                note = 72;
-                break;
-            case 3:
-            case 10:
-                note = 65;
-                break;
-            case 4:
-            case 11:
-                note = 71;
-                break;
-            case 5:
-            case 12:
-                note = 70;
-                break;
-            case 6:
-            case 13:
-                note = 69;
-                break;
+
+    if (isFlatSharp == 0) {
+        audio_modifier = 1;
+    }
+    else if (isFlatSharp == 1) {
+        audio_modifier = -1;
+    }
+    else {
+        audio_modifier = 0;
+    }
+
+    if (isBass) {
+        if (document.getElementsByTagName("audio")[1 + number * 2 + audio_modifier].getAttribute("data-key") != "filler") {
+
+            document.getElementsByTagName("audio")[1 + number * 2 + audio_modifier].classList.add("correct");
+        }
+        else {
+            document.getElementsByTagName("audio")[1 + number * 2 + 2 * audio_modifier].classList.add("correct");
         }
     }
     else {
-        document.getElementsByTagName("audio")[number].classList.add("correct");
-        switch (number) {
 
-            case 0:
-            case 7:
-            case 14:
-                note = 72;
-                break;
-            case 1:
-            case 8:
-                note = 65;
-                break;
-            case 2:
-            case 9:
-                note = 71;
-                break;
-            case 3:
-            case 10:
-                note = 70;
-                break;
-            case 4:
-            case 11:
-                note = 69;
-                break;
-            case 5:
-            case 12:
-                note = 68;
-                break;
-            case 6:
-            case 13:
-                note = 67;
-                break;
+        if (document.getElementsByTagName("audio")[25 + number * 2 + audio_modifier].getAttribute("data-key") != "filler") {
+            document.getElementsByTagName("audio")[25 + number * 2 + audio_modifier].classList.add("correct");
+        }
+        else {
+            document.getElementsByTagName("audio")[25 + number * 2 + 2 * audio_modifier].classList.add("correct");
         }
     }
+    note = document.getElementsByClassName("correct")[0].getAttribute("data-key");
 
     // correct key in keyboard
 
     if (isFlatSharp != 0 && isFlatSharp != 1) {
         if (isBass) {
-            whites[15 - number].classList.add("piano-answer");
+            whites[1 + number].classList.add("piano-answer");
         }
         else {
-            whites[27 - number].classList.add("piano-answer");
+            whites[13 + number].classList.add("piano-answer");
         }
     }
     else if (isFlatSharp == 1) { // flat
         if (isBass) {
             switch (number) {
-                case 1:
-                case 5:
-                case 8:
-                case 12:
-                    whites[14 - number].classList.add("piano-answer");
+                case 2:
+                case 6:
+                case 9:
+                case 13:
+                    whites[number].classList.add("piano-answer");
                     break;
                 default:
-                    blacks[14 - number].classList.add("piano-answer");
+                    blacks[number].classList.add("piano-answer");
                     break;
             }
         }
         else {
             switch (number) {
-                case 3:
-                case 6:
-                case 10:
-                case 13:
-                    whites[26 - number].classList.add("piano-answer");
+                case 1:
+                case 4:
+                case 8:
+                case 11:
+                    whites[12 + number].classList.add("piano-answer");
                     break;
                 default:
-                    blacks[26 - number].classList.add("piano-answer");
+                    blacks[12 + number].classList.add("piano-answer");
                     break;
             }
         }
@@ -181,28 +145,28 @@ function RandomNote() {
     else if (isFlatSharp == 0) { // sharp
         if (isBass) {
             switch (number) {
-                case 2:
-                case 6:
-                case 9:
-                case 13:
-                    whites[16 - number].classList.add("piano-answer");
+                case 1:
+                case 5:
+                case 8:
+                case 12:
+                    whites[2 + number].classList.add("piano-answer");
                     break;
                 default:
-                    blacks[15 - number].classList.add("piano-answer");
+                    blacks[1 + number].classList.add("piano-answer");
                     break;
             }
         }
         else {
             switch (number) {
                 case 0:
-                case 4:
+                case 3:
                 case 7:
-                case 11:
+                case 10:
                 case 14:
-                    whites[28 - number].classList.add("piano-answer");
+                    whites[14 + number].classList.add("piano-answer");
                     break;
                 default:
-                    blacks[27 - number].classList.add("piano-answer");
+                    blacks[13 + number].classList.add("piano-answer");
                     break;
             }
         }
@@ -213,11 +177,11 @@ function RandomNote() {
     // shows additional lines if needed
     var short = document.querySelectorAll('.short');  // short lines above and below
     if (number < 2) {
-        short[0].style.opacity = "1";
-        short[1].style.opacity = "0";
-    } else if (number > 12) {
-        short[0].style.opacity = "0";
         short[1].style.opacity = "1";
+        short[0].style.opacity = "0";
+    } else if (number > 12) {
+        short[1].style.opacity = "0";
+        short[0].style.opacity = "1";
     }
     else {
         short[0].style.opacity = "0";
@@ -250,18 +214,22 @@ window.addEventListener('keydown', playNote);
 function playNote(e) {
 
     if (e.keyCode == note) {
+        document.querySelector(`.butt[data-key="${e.keyCode}"]`).classList.add("playing");
         correctKey();
         RandomNote();
     }
     else if (e.keyCode > 64 && e.keyCode < 73 && e.keyCode != 66) {
+        document.querySelector(`.butt[data-key="${e.keyCode}"]`).classList.add("playing");
         wrongKey();
     }
-    var butt = document.querySelector(`.butt[data-key="${e.keyCode}"]`);
-    butt.classList.add("playing");
+
 
 }
 // handles clicking
 butts.forEach(b => b.addEventListener('click', function (e) {
+
+    var butt = document.querySelector(`.butt[data-key="${this.dataset['key']}"]`);
+    butt.classList.add("playing");
 
     if (this.dataset["key"] == note) {
         correctKey();
@@ -271,22 +239,19 @@ butts.forEach(b => b.addEventListener('click', function (e) {
         wrongKey();
     }
 
-    var butt = document.querySelector(`.butt[data-key="${this.dataset['key']}"]`);
-    butt.classList.add("playing");
+
 }));
 
-// keyboard presses
+// piano-keyboard presses
 whites.forEach(w => w.addEventListener('click', function (e) {
-
-    
 
     if (this.classList.contains("piano-answer")) {
         correctKey();
         RandomNote();
     }
     else {
-        this.classList.add("pressed");
         wrongKey();
+        this.classList.add("pressed");
     }
 }));
 whites.forEach(w => w.addEventListener('animationend', function (e) {
@@ -295,14 +260,13 @@ whites.forEach(w => w.addEventListener('animationend', function (e) {
 
 blacks.forEach(b => b.addEventListener('click', function (e) {
 
-    this.classList.add("pressed");
-
     if (this.classList.contains("piano-answer")) {
         correctKey();
         RandomNote();
     }
     else {
         wrongKey();
+        this.classList.add("pressed");
     }
 }));
 blacks.forEach(b => b.addEventListener('animationend', function (e) {
