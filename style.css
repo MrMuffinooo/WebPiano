@@ -185,75 +185,69 @@ nav{
 article{
     background-color: var(--secondary-color);
     height: 100%;
+    padding-top: 5vw;
 }
 
 /* 5 LINES **********/
 
 #container{
-    /* background-color: rgba(0,0,0,.05); */
-    height: 500px;
-    width: 80%;
+    margin-bottom: calc(50px + 1vh);
+    width: 90%;
     margin-left: auto;
-    padding-left: 30px;
+    position: relative;
+}
+
+.linia{
+    border-top: 3.5px solid black;
+    margin-bottom: 25px;  /*Note moves by 14.25 px*/
+}
+
+.short{
+    width: 72px;
+    display: hidden;
+    opacity: 1;
+    transition: .4s ease-in-out;
+    position: relative;
+    left: 40%;
 }
 
 #key{
-    position: relative;
-    top: 193px;
+    position: absolute;
+    top: -9px;
     left: 1%;
     opacity: 1;
     transition: all .3s ease-in-out;
 }
 
 #bass{
-    position: relative;
-    top: 132px;
-    left: calc(1% - 75px);
+    position: absolute;
+    top: 30px;
+    left: 1%;
     opacity: 0;
     transition: all .3s ease-in-out;
 }
 
 #note{
-    position: relative;
-    left: calc(30% - 75px);
-    top: 20px;
+    position: absolute;
+    left: 40%;
+    top: -114px;
     transform-origin: 37px 101px;
     transition: .4s ease-in-out;
     transform: rotate(180deg);
 }
 
 .sharpflat{
-    position: relative;
-    left: calc(30% - 185px);
-    top: 20px;
+    position: absolute;
+    left: calc(40% - 30px);
+    top: -114px;
     transition: .4s ease-in-out;
 }
-
-#flat{
-    left: calc(30% - 215px);
-}
-
-.linia{
-    border-top: 3px solid black;
-    margin-bottom: 25px;
-}
-
-.short{
-    width: 72px;
-    position: relative;
-    left: calc(30% + 90px);
-    display: hidden;
-    opacity: 0;
-    transition: .4s ease-in-out;
-}
-
 
 /* KEYBOARD **********/
 
 
 #keyboard-container{
     background-color: rgba(0,0,0,.4);
-    height: calc(100vh - 500px);
     overflow: hidden;
 }
 

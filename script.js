@@ -53,10 +53,10 @@ function RandomNote() {
         temp = Math.floor(Math.random() * 15);
     } while (temp == number);
     number = temp;
-    top = 20 + 14 * number;
+    top = -114 + 14.15 * number;
     document.getElementById("note").style.top = top;
-    sharp.style.top = top - 5;
-    flat.style.top = top - 10;
+    sharp.style.top = top + 75;
+    flat.style.top = top + 68;
     FlatSharp();
 
 
